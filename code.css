@@ -1,0 +1,15 @@
+section, h1{
+	display: block;
+	margin: 1em auto;
+	width: 400px;
+}
+footer {
+	display: block;
+	color: #ccc;
+	font-size: .8em;
+	text-align: center;
+	width: 100%;
+}
+.copyright a {
+	color: #aaa;
+}
