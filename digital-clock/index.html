@@ -122,6 +122,10 @@
 		.d0 .center.top, .d0 .center.bottom, .d0 .left.top, .d0 .left.bottom, .d0 .right.top, .d0 .right.bottom {
 			opacity: .9;
 		}
+		/* Always hide leading zeros */
+		.d0:first-child .bar {
+			opacity: .1 !important;
+		}
 		.d1 .right.top, .d1 .right.bottom {
 			opacity: .9;
 		}
@@ -165,6 +169,22 @@
 			bottom: 64px;
 		}
 		
+		.ampm.am .am {
+			opacity: .9;
+		}
+		.ampm.pm .pm {
+			opacity: .9;
+		}
+		.hr24 .ampm .am, .hr24 .ampm .pm {
+			opacity: .1 !important;
+		}
+		.hr12 .element.hr12 {
+			opacity: .9 !important;
+		}
+		.hr24 .element.hr24 {
+			opacity: .9 !important;
+		}
+		
 		/* Text */
 		.text {
 			font-family: "Arial", sans-serif;
@@ -200,6 +220,10 @@
 		}
 		
 		/* Controls */
+		button {
+			border: none;
+			background: none;
+		}
 		.controls {
 			position: relative;
 			height: 100%;
@@ -207,9 +231,16 @@
 			text-align: center;
 			z-index: 101;
 		}
+		.controls .text {
+			display: inline-block;
+		}
 		.controls .dot {
 			display: inline-block;
 			margin: 10px;
+			padding: 0;
+			transition:         all 250ms ease;
+			-webkit-transition: all 250ms ease;
+			-moz-transition:    all 250ms ease;			
 		}
 		
 		/* Color Themes - Green is default */
@@ -251,7 +282,7 @@
 			-moz-transition: all 1000ms ease;
 		}
 		
-		footer .text {
+		.copyright {
 			display: block;
 			font-size: 9px;
 			text-align: center;
@@ -332,9 +363,11 @@
 	</div>
 	<footer>
 		<div class="controls">
-			<a class="element dot green on"></a>
-			<a class="element dot blue"></a>
-			<a class="element dot red"></a>
+			<button class="element dot green on"></button>
+			<button class="element dot blue"></button>
+			<button class="element dot red"></button>
+			<button class="element text hr12">12</button>
+			<button class="element text hr24">24</button>
 		</div>
 		<p class="copyright text">Copyright &copy; 2010 <a href="http://briancavalier.com" title="Digital Clock">Brian Cavalier</a>
 	</footer>
@@ -345,7 +378,7 @@
 			,dimTimeout
 			,hasLocalStorage = ('localStorage' in window) && window['localStorage'] !== null
 			,prefsKey = "digitalClock.prefs"
-			,prefs = loadPrefs({ theme: "green" });
+			,prefs = loadPrefs({ theme: "green", hours: 12 });
 			;
 
 		function loadPrefs(defaults) {
@@ -354,7 +387,7 @@
 			return p ? dojo.fromJson(p) : defaults;
 		}
 
-		function savePrefs(prefs) {
+		function savePrefs() {
 			if(hasLocalStorage)
 				window.localStorage.setItem(prefsKey, dojo.toJson(prefs));
 		}
@@ -367,21 +400,23 @@
 				,m = now.getMinutes()
 				,s = now.getSeconds()
 				,n = dojo.query('.number')
-				,ap = (h > 11) ? ".pm" : ".am"
+				,hours = prefs.hours
+				,ap = (h >= hours) ? "pm" : "am"
 				;
-			// Adjust h for display.  Only support 12 hour clock right now
-			h = (h == 0) ? 12 : (h > 12) ? h % 12 : h;
+			// If 12hr clock, adjust h for display, and set AM/PM
+			if(hours == 12) {				
+				h = (h == 0) ? 12 : (h > 12) ? h % 12 : h;
+				dojo.query('.ampm').removeClass(["am", "pm"]).addClass(ap);
+			}
 
 			// Javascript Pittsburgh-ese .. n.at :)
 			// Set all the digits
-			if(h > 9) n.at(0).addClass("d1");
-			n.at(1).addClass("d" + (h % 10)).end()
+			n.at(0).addClass("d" + Math.floor(h / 10)).end()
+				.at(1).addClass("d" + (h % 10)).end()
 				.at(2).addClass("d" + Math.floor(m / 10)).end()
 				.at(3).addClass("d" + (m % 10)).end()
 				.at(4).addClass("d" + Math.floor(s / 10)).end()
 				.at(5).addClass("d" + (s % 10));
-			// Set am/pm
-			dojo.query('.ampm .element').removeClass("on").filter(ap).addClass('on');
 		}
 				
 		function brighten() {
@@ -403,10 +438,18 @@
 			dojo.query('.controls .dot.on').removeClass('on');
 			dojo.query('.controls .dot.' + theme).addClass('on');
 			prefs.theme = theme;
-			savePrefs(prefs);
+			savePrefs();
+		}
+		
+		function setHours(hours) {
+			dojo.query(document.body).removeClass(["hr12", "hr24"]).addClass('hr' + hours);
+			prefs.hours = hours;
+			savePrefs();
+			updateTime();
 		}
 
 		setTheme(prefs.theme);
+		setHours(prefs.hours);
 		
 		updateTime();
 		setupDim();
@@ -416,6 +459,8 @@
 		dojo.query('.controls .dot.green').onclick(function(e) { setTheme("green"); });	
 		dojo.query('.controls .dot.blue').onclick(function(e) { setTheme("blue"); });	
 		dojo.query('.controls .dot.red').onclick(function(e) { setTheme("red"); });	
+		dojo.query('.controls .hr12').onclick(function(e) { setHours(12); });	
+		dojo.query('.controls .hr24').onclick(function(e) { setHours(24); });	
 	});
 </script>
 </body>
