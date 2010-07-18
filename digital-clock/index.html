@@ -15,7 +15,7 @@
 			margin: 0;
 			padding: 0;
 		}
-		.wrapper {
+		.clock {
 			margin: 0;
 			position: relative;
 			width: 100%;
@@ -218,25 +218,28 @@
 			-webkit-box-shadow: 0 0 20px rgb(200, 20, 0);
 			-moz-box-shadow: 0 0 20px rgb(200, 20, 0);
 		}
+		.dot.lcd1 {
+			background-color: #adbda0;
+			-webkit-box-shadow: 2px 2px 4px #7f7f7f;
+			-moz-box-shadow: 2px 2px 4px #7f7f7f;
+		}
 		
 		/* Controls */
-		button {
-			border: none;
-			background: none;
-		}
 		.controls {
 			position: relative;
 			height: 100%;
-			overflow: hidden;
 			text-align: center;
 			z-index: 101;
+		}
+		.controls .element {
+			margin: 0 10px;
+			overflow: visible;
 		}
 		.controls .text {
 			display: inline-block;
 		}
 		.controls .dot {
 			display: inline-block;
-			margin: 10px;
 			padding: 0;
 			transition:         all 250ms ease;
 			-webkit-transition: all 250ms ease;
@@ -245,7 +248,7 @@
 		
 		/* Color Themes - Green is default */
 		/* Blue */
-		.blue .wrapper {
+		.blue .clock {
 			background-image: -webkit-gradient(linear, left top, left bottom, from(#000), color-stop(.5, rgba(80, 160, 200, .5)), to(#000));
 			background-image: -moz-linear-gradient(top, #000, rgba(0, 200, 255, .3) 50%, #000);
 			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a000a0ff', endColorstr='#ff000000');
@@ -255,8 +258,12 @@
 			-webkit-box-shadow: 0 0 20px rgb(0, 200, 255);
 			-moz-box-shadow: 0 0 20px rgb(0, 200, 255);
 		}
+		.red .text, .red a, .red a:visited {
+			color: rgb(200, 20, 0);
+			text-shadow: 0 0 20px rgb(200, 20, 0);
+		}
 		/* Red */
-		.red .wrapper {
+		.red .clock {
 			background-image: -webkit-gradient(linear, left top, left bottom, from(#000), color-stop(.5, rgba(150, 0, 0, .3)), to(#000));
 			background-image: -moz-linear-gradient(top, #000, rgba(150, 0, 0, .3) 50%, #000);
 			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a0a00000', endColorstr='#ff000000');	
@@ -270,9 +277,21 @@
 			color: rgb(0, 200, 255);
 			text-shadow: 0 0 20px rgb(0, 200, 255);
 		}
-		.red .text, .red a, .red a:visited {
-			color: rgb(200, 20, 0);
-			text-shadow: 0 0 20px rgb(200, 20, 0);
+		/* LCD 1 */
+		body.lcd1, .lcd1 .clock {
+			background: #adbda0;
+		}
+		.lcd1 .overlay {
+			background: none;
+		}
+		.lcd1 .bar, .lcd1 .text, .lcd1 a, .lcd1 a:visited {
+			color: #323232;
+			text-shadow: 2px 2px 2px #7f7f7f;
+		}
+		.lcd1 .bar {
+			background-color: #323232;
+			-webkit-box-shadow: 4px 4px 10px #7f7f7f;
+			-moz-box-shadow: 4px 4px 10px #7f7f7f;
 		}
 
 		footer {
@@ -290,12 +309,13 @@
 		
 		a, a:visited {
 			color: #0f0;
+			text-decoration; none;
 			text-shadow: 0 0 20px #0f0;
 		}
 	</style>
 </head>
 <body>
-<div class="wrapper green">
+<div class="clock green">
 	<div class="overlay"></div>
 	<div class="display">
 		<div class="slot number">
@@ -364,13 +384,14 @@
 	<footer>
 		<div class="controls">
 			<div>
-				<button class="element dot green on"></button>
-				<button class="element dot blue"></button>
-				<button class="element dot red"></button>
+				<a class="element dot green on"></a>
+				<a class="element dot blue"></a>
+				<a class="element dot red"></a>
+				<a class="element dot lcd1"></a>
 			</div>
 			<div>
-				<button class="element text hr12">12</button>
-				<button class="element text hr24">24</button>
+				<a class="element text hr12">12</a>
+				<a class="element text hr24">24</a>
 			</div>
 		</div>
 		<p class="copyright text">Copyright &copy; 2010 <a href="http://briancavalier.com" title="Digital Clock">Brian Cavalier</a>
@@ -438,7 +459,7 @@
 		}
 		
 		function setTheme(theme) {
-			dojo.query(document.body).removeClass(["green", "blue", "red"]).addClass(theme);
+			dojo.query(document.body).removeClass(["green", "blue", "red", "lcd1"]).addClass(theme);
 			dojo.query('.controls .dot.on').removeClass('on');
 			dojo.query('.controls .dot.' + theme).addClass('on');
 			prefs.theme = theme;
@@ -463,6 +484,7 @@
 		dojo.query('.controls .dot.green').onclick(function(e) { setTheme("green"); });	
 		dojo.query('.controls .dot.blue').onclick(function(e) { setTheme("blue"); });	
 		dojo.query('.controls .dot.red').onclick(function(e) { setTheme("red"); });	
+		dojo.query('.controls .dot.lcd1').onclick(function(e) { setTheme("lcd1"); });	
 		dojo.query('.controls .hr12').onclick(function(e) { setHours(12); });	
 		dojo.query('.controls .hr24').onclick(function(e) { setHours(24); });	
 	});
