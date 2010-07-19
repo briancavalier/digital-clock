@@ -59,7 +59,7 @@ dojo.ready(function() {
 	}
 	
 	function setTheme(theme) {
-		dojo.query(document.body).removeClass(["green", "blue", "red", "lcd1"]).addClass(theme);
+		dojo.query(document.body).removeClass(["green", "blue", "red", "lcd1", "blue-backlight"]).addClass(theme);
 		dojo.query('.controls .dot.on').removeClass('on');
 		dojo.query('.controls .dot.' + theme).addClass('on');
 		prefs.theme = theme;

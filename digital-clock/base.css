@@ -216,6 +216,11 @@ div {
 	-webkit-box-shadow: 2px 2px 4px #7f7f7f;
 	-moz-box-shadow: 2px 2px 4px #7f7f7f;
 }
+.dot.blue-backlight {
+	background-color: #000;
+	-webkit-box-shadow: 0 0 20px rgb(0, 200, 255);
+	-moz-box-shadow: 0 0 20px  rgb(0, 200, 255);
+}
 
 /* Controls */
 .controls {
@@ -277,7 +282,7 @@ body.lcd1, .lcd1 .clock {
 .lcd1 .overlay {
 	background: none;
 }
-.lcd1 .bar, .lcd1 .text, .lcd1 a, .lcd1 a:visited {
+.lcd1 .text, .lcd1 a, .lcd1 a:visited {
 	color: #323232;
 	text-shadow: 2px 2px 2px #7f7f7f;
 }
@@ -286,8 +291,43 @@ body.lcd1, .lcd1 .clock {
 	-webkit-box-shadow: 3px 3px 3px #7f7f7f;
 	-moz-box-shadow: 3px 3px 3px #7f7f7f;
 }
+/* Blue Backlight */
+.blue-backlight .clock {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(200, 240, 255)), color-stop(5%, rgb(0, 200, 255)), color-stop(50%, rgba(0, 200, 255, .7)), color-stop(95%, rgb(0, 200, 255)), to(rgb(200, 240, 255)));
+	background-image: -moz-linear-gradient(top, rgb(200, 240, 255), rgb(0, 200, 255) 5%, rgba(0, 200, 255, .7) 50%, rgb(0, 200, 255) 95%, rgb(200, 240, 255));
+}
+.dim.blue-backlight .clock {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 200, 255, .3)), color-stop(50%, rgba(0, 200, 255, .2)), to(rgba(0, 200, 255, .3)));	
+	background-image: -moz-linear-gradient(top, rgba(0, 200, 255, .3), rgba(0, 200, 255, .2) 50%, rgba(0, 200, 255, .3));
+}
+.dim.blue-backlight .overlay {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0)));
+	background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+/*	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .5)), color-stop(47%, rgba(255, 255, 255, .1)), color-stop(47.01%, rgba(0, 0, 0, .1)), to(rgba(0, 0, 0, 0)));
+	background-image: -moz-linear-gradient(top, rgba(255, 255, 255, .5), rgba(255, 255, 255, .1) 47%, rgba(0, 0, 0, .1) 47.01%, rgba(0, 0, 0, 0));
+*/}
+.blue-backlight .overlay {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .3)), to(rgba(255, 255, 255, 0)));
+	background-image: -moz-linear-gradient(top, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0));
+/*	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .3)), color-stop(47%, rgba(255, 255, 255, 0)), color-stop(47.01%, rgba(0, 0, 0, .1)), to(rgba(0, 0, 0, 0)));
+	background-image: -moz-linear-gradient(top, rgba(255, 255, 255, .3), rgba(255, 255, 255, 0) 47%, rgba(0, 0, 0, .1) 47.01%, rgba(0, 0, 0, 0));
+*/}
+.blue-backlight .text, .blue-backlight a, .blue-backlight a:visited {
+	color: #000;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+}
+.blue-backlight .bar {
+	background-color: rgba(0, 0, 0, .9);
+	-webkit-box-shadow: 3px 3px 20px #000;
+	-moz-box-shadow: 3px 3px 20px #000;
+}
+.blue-backlight footer .text, .blue-backlight .copyright a, .blue-backlight .copyright a:visited {
+	color: rgb(0, 200, 255);
+	text-shadow: 0 0 10px rgba(0, 200, 255, 1);
+}
 
 footer {
+	margin-top: 10px;
 	position: relative;
 	z-index: 102;
 	-webkit-transition: all 1000ms ease;
@@ -304,4 +344,23 @@ a, a:visited {
 	color: #0f0;
 	text-decoration; none;
 	text-shadow: 0 0 20px #0f0;
+}
+
+.message {
+	background: rgba(0, 0, 0, .5);
+	padding: 0 10%;
+	position: absolute;
+	right: 0;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 200;
+}
+
+.message .text {
+	color: #fff;
+}
+
+.ie-only {
+	display: none;
 }
