@@ -283,8 +283,8 @@ body.lcd1, .lcd1 .clock {
 }
 .lcd1 .bar {
 	background-color: #323232;
-	-webkit-box-shadow: 4px 4px 10px #7f7f7f;
-	-moz-box-shadow: 4px 4px 10px #7f7f7f;
+	-webkit-box-shadow: 3px 3px 3px #7f7f7f;
+	-moz-box-shadow: 3px 3px 3px #7f7f7f;
 }
 
 footer {

@@ -81,10 +81,6 @@ dojo.ready(function() {
 	setInterval(updateTime, 1000);
 	dojo.query(document.body).onmousemove(brighten).onclick(brighten);
 	
-	dojo.query('.controls .dot.green').onclick(function(e) { setTheme("green"); });	
-	dojo.query('.controls .dot.blue').onclick(function(e) { setTheme("blue"); });	
-	dojo.query('.controls .dot.red').onclick(function(e) { setTheme("red"); });	
-	dojo.query('.controls .dot.lcd1').onclick(function(e) { setTheme("lcd1"); });	
-	dojo.query('.controls .hr12').onclick(function(e) { setHours(12); });	
-	dojo.query('.controls .hr24').onclick(function(e) { setHours(24); });	
+	dojo.query('.controls .dot').onclick(function(e) { setTheme(dojo.attr(this, "name")); });
+	dojo.query('.controls .hours').onclick(function(e) { setHours(1*dojo.attr(this, "name")); });	
 });
