@@ -15,18 +15,6 @@ $(function() {
 	function setPref(name, value) {
 		if(store) store.setItem(name, value);
 	}
-		
-	function loadPrefs(defaults) {
-		return defaults;
-		// var p;
-		// if(store) p = store.getItem(prefsKey);
-		// return p ? $.parseJSON(p) : defaults;
-	}
-
-	function savePrefs() {
-		// if(store)
-		// 	store.setItem(prefsKey, (prefs));
-	}
 
 	function updateTime() {
 		$('.colon .element').toggleClass('on');
