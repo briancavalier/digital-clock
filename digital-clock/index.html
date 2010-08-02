@@ -2,24 +2,13 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	<title>CSS3 Digital Clock</title>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.4/dojo/dojo.xd.js"></script>
+	<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="clock.js"></script>
 	<link rel="stylesheet" type="text/css" href="base.css" media="screen">
-	<!--[if IE lt 9]>
-	<link rel="stylesheet" type="text/css" href="ie.css" media="screen">		
-	<![endif]-->
 </head>
 <body>
 	<div class="clock">
-		<div class="message ie-only">
-			<p class="element text">The CSS3 Digital Clock uses many of the newest web technologies, such as CSS3 transforms and transitions,
-				to create cool visual effects.  Unfortunately, Internet Explorer does not yet support these technologies, and so you are probably
-				seeing something less than stellar right now.  If you switch to Chrome or Firefox, you'll not only see the clock in all it's glowing coolness, you'll probably have a much better overall experience when using the web.</p>
-		</div>
 		<div class="overlay"></div>
 		<div class="display">
 			<div class="slot number">
@@ -92,8 +81,6 @@
 				<a class="theme element dot green on" name="green" title="Green"></a>
 				<a class="theme element dot blue" name="blue" title="Blue"></a>
 				<a class="theme element dot red" name="red" title="Red"></a>
-				<a class="theme element dot lcd1" name="lcd1" title="LCD"></a>
-				<a class="theme element dot blue-backlight" name="blue-backlight" title="Blue Backlight"></a>
 			</div>
 			<div class="controls">
 				<a class="element text hours hr12" name="12" title="12-hour clock">12</a>
