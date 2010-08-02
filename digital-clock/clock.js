@@ -7,9 +7,7 @@ $(function() {
 		;
 		
 	function getPref(name, defaultVal) {
-		var p;
-		if(store) p = store.getItem(name);
-		return p ? p : defaultVal;
+		return store ? (store.getItem(name) || defaultVal) : defaultVal;
 	}
 	
 	function setPref(name, value) {
@@ -59,7 +57,7 @@ $(function() {
 	}
 	
 	function setTheme(theme) {
-		$(body).removeClass($(".theme").map(function(t) { return t.name; })).addClass(theme);
+		$(body).removeClass($(".theme").map(function() { return this.name; }).toArray().join(" ")).addClass(theme);
 		$('.controls .dot.on').removeClass('on');
 		$('.controls .dot.' + theme).addClass('on');
 		setPref("theme", theme);

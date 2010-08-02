@@ -228,6 +228,9 @@ div {
 	text-align: center;
 	z-index: 101;
 }
+.controls a {
+	cursor: pointer;
+}
 .controls .element {
 	margin: 0 10px;
 	overflow: visible;
