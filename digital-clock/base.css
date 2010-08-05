@@ -40,32 +40,36 @@ div {
 }
 .dim .display {
 	opacity: .4;
+	filter: alpha(opacity = 40);
 }
 .dim footer {
 	opacity: 0;
+	filter: alpha(opacity = 0);
 }
 .slot {
 	float: left;
 	height: 222px;
 	margin: 0 15px 15px 0;
-	position: relative;			
+	position: relative;
 	-webkit-transform: skewX(-5deg);
 	-moz-transform: skewX(-5deg);
 }
+.slot.second {
+	margin-top: 111px;
+	height: 111px;
+	width: 62px;
+	bottom: 0;
+}
 .element {
 	opacity: .1;
+	filter: alpha(opacity = 10);
 }
 .on {
 	opacity: .9 !important;
+	filter: alpha(opacity = 90) !important;
 }
 .number {
 	width: 124px;
-}
-.second {
-	margin-left: -32px;
-	margin-right: -16px;
-	-webkit-transform: scale(.5) skewX(-5deg);
-	-moz-transform: scale(.5) skewX(-5deg);
 }
 
 /* Bars for digits */
@@ -79,10 +83,19 @@ div {
 	-webkit-transition: all 400ms ease;
 	-moz-transition: all 400ms ease;
 }
+.second .bar {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+}
 .center {
 	left: 22px;
 	height: 20px;
 	width: 80px;
+}
+.second .center {
+	height: 10px;
+	width: 40px;
+	left: 11px;
 }
 .center.top {
 	top: 0;
@@ -90,12 +103,19 @@ div {
 .center.middle {
 	top: 100px;
 }
+.second .center.middle {
+	top: 50px;
+}
 .center.bottom {
 	bottom: 0px;
 }
 .left, .right {
 	width: 20px;
 	height: 100px;
+}
+.second .left, .second .right {
+	width: 10px;
+	height: 50px;
 }
 .left {
 	left: 0;
@@ -106,8 +126,14 @@ div {
 .left.top, .right.top {
 	top: 10px;
 }
+.second .left.top, .second .right.top {
+	top: 5px;
+}
 .left.bottom, .right.bottom {
 	bottom: 10px;
+}
+.second .left.bottom, .second .right.bottom {
+	bottom: 5px;
 }
 
 /* Digits */
@@ -249,8 +275,8 @@ div {
 /* Color Themes - Green is default */
 /* Blue */
 .blue .clock {
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#000), color-stop(.5, rgba(80, 160, 200, .5)), to(#000));
-	background-image: -moz-linear-gradient(top, #000, rgba(0, 200, 255, .3) 50%, #000);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#000), color-stop(.5, rgba(80, 160, 200, .4)), to(#000));
+	background-image: -moz-linear-gradient(top, #000, rgba(0, 200, 255, .4) 50%, #000);
 }
 .blue .bar {
 	background-color: rgb(0, 200, 255);
