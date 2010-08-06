@@ -39,11 +39,9 @@ div {
 }
 .dim .display {
 	opacity: .4;
-	filter: alpha(opacity = 40);
 }
 .dim footer {
 	opacity: 0;
-	filter: alpha(opacity = 0);
 }
 .slot {
 	float: left;
@@ -55,11 +53,9 @@ div {
 }
 .element {
 	opacity: .1;
-	filter: alpha(opacity = 10);
 }
 .on {
 	opacity: .9 !important;
-	filter: alpha(opacity = 90) !important;
 }
 .digit
  {
@@ -219,7 +215,7 @@ div {
 .dot {
 	background-color: #0f0;
 	height: 10px;
-	width: 20p;
+	width: 20px;
 	opacity: .3;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -253,6 +249,7 @@ div {
 }
 .controls .text {
 	display: inline-block;
+	opacity: .3;
 }
 .controls .dot {
 	display: inline-block;
@@ -293,7 +290,8 @@ div {
 }
 
 footer {
-	margin-top: 10px;
+	display: block;
+	margin-top: 10px 0 0 0;
 	position: relative;
 	z-index: 102;
 	-webkit-transition: all 1000ms ease;
