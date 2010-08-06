@@ -9,7 +9,6 @@ div {
 	padding: 0;
 }
 .clock {
-	margin: 0;
 	position: relative;
 	width: 100%;
 	min-width: 820px;
@@ -54,12 +53,6 @@ div {
 	-webkit-transform: skewX(-5deg);
 	-moz-transform: skewX(-5deg);
 }
-.slot.second {
-	margin-top: 111px;
-	height: 111px;
-	width: 62px;
-	bottom: 0;
-}
 .element {
 	opacity: .1;
 	filter: alpha(opacity = 10);
@@ -71,8 +64,13 @@ div {
 .number {
 	width: 124px;
 }
+.second {
+	margin-top: 111px;
+	height: 111px;
+	width: 62px;
+}
 
-/* Bars for digits */
+/* Bars for hours and minutes */
 .bar {
 	background-color: #0f0;
 	border-radius: 4px;
@@ -83,19 +81,10 @@ div {
 	-webkit-transition: all 400ms ease;
 	-moz-transition: all 400ms ease;
 }
-.second .bar {
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-}
 .center {
 	left: 22px;
 	height: 20px;
 	width: 80px;
-}
-.second .center {
-	height: 10px;
-	width: 40px;
-	left: 11px;
 }
 .center.top {
 	top: 0;
@@ -103,19 +92,12 @@ div {
 .center.middle {
 	top: 100px;
 }
-.second .center.middle {
-	top: 50px;
-}
 .center.bottom {
 	bottom: 0px;
 }
 .left, .right {
 	width: 20px;
 	height: 100px;
-}
-.second .left, .second .right {
-	width: 10px;
-	height: 50px;
 }
 .left {
 	left: 0;
@@ -126,11 +108,28 @@ div {
 .left.top, .right.top {
 	top: 10px;
 }
-.second .left.top, .second .right.top {
-	top: 5px;
-}
 .left.bottom, .right.bottom {
 	bottom: 10px;
+}
+/* Seconds */
+.second .bar {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+.second .center {
+	height: 10px;
+	width: 40px;
+	left: 11px;
+}
+.second .center.middle {
+	top: 50px;
+}
+.second .left, .second .right {
+	width: 10px;
+	height: 50px;
+}
+.second .left.top, .second .right.top {
+	top: 5px;
 }
 .second .left.bottom, .second .right.bottom {
 	bottom: 5px;
@@ -140,7 +139,7 @@ div {
 .d0 .center.top, .d0 .center.bottom, .d0 .left.top, .d0 .left.bottom, .d0 .right.top, .d0 .right.bottom {
 	opacity: .9;
 }
-/* Always hide leading zeros */
+/* Always hide leading zeros in 12hr time */
 .hr12 .d0:first-child .bar {
 	opacity: .1 !important;
 }
@@ -269,7 +268,7 @@ div {
 	padding: 0;
 	transition:         all 250ms ease;
 	-webkit-transition: all 250ms ease;
-	-moz-transition:    all 250ms ease;			
+	-moz-transition:    all 250ms ease;
 }
 
 /* Color Themes - Green is default */
