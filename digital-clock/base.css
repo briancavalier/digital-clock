@@ -22,8 +22,8 @@ div {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 300, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, .3)));
-	background-image: -moz-radial-gradient(center 45deg, circle closest-side, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .3) 300%);
+	background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 150, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, .3)));
+	background-image: -moz-radial-gradient(center 45deg, circle closest-side, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .3) 150%);
 	z-index: 100;
 }
 .display {
@@ -61,7 +61,8 @@ div {
 	opacity: .9 !important;
 	filter: alpha(opacity = 90) !important;
 }
-.number {
+.digit
+ {
 	width: 124px;
 }
 .second {
@@ -218,7 +219,7 @@ div {
 .dot {
 	background-color: #0f0;
 	height: 10px;
-	width: 10px;
+	width: 20p;
 	opacity: .3;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -234,16 +235,6 @@ div {
 	background-color: rgb(200, 20, 0);
 	-webkit-box-shadow: 0 0 20px rgb(200, 20, 0);
 	-moz-box-shadow: 0 0 20px rgb(200, 20, 0);
-}
-.dot.lcd1 {
-	background-color: #adbda0;
-	-webkit-box-shadow: 2px 2px 4px #7f7f7f;
-	-moz-box-shadow: 2px 2px 4px #7f7f7f;
-}
-.dot.blue-backlight {
-	background-color: #000;
-	-webkit-box-shadow: 0 0 20px rgb(0, 200, 255);
-	-moz-box-shadow: 0 0 20px  rgb(0, 200, 255);
 }
 
 /* Controls */
