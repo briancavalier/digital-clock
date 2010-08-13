@@ -79,6 +79,6 @@ $(function() {
 
 	$(body).mousemove(brighten).click(brighten);
 
-	$('.controls .dot').click(function(e) { setTheme(this.name); });
-	$('.controls .hours').click(function(e) { setHours(1*this.name); });	
+    $('.controls .dot').click(function() { setTheme(this.name); });
+    $('.controls .hours').click(function() { setHours(1*this.name); });	
 });
