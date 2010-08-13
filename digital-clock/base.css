@@ -291,7 +291,7 @@ div {
 
 footer {
 	display: block;
-	margin-top: 10px 0 0 0;
+	margin-top: 10px;
 	position: relative;
 	z-index: 102;
 	-webkit-transition: all 1000ms ease;
@@ -306,6 +306,5 @@ footer {
 
 a, a:visited {
 	color: #0f0;
-	text-decoration; none;
 	text-shadow: 0 0 20px #0f0;
 }
