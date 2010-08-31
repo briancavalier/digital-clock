@@ -67,7 +67,7 @@ div {
 	width: 62px;
 }
 
-/* Bars for hours and minutes */
+/* Bars for hours, minutes, and seconds */
 .bar {
 	background-color: #0f0;
 	border-radius: 4px;
