@@ -1,7 +1,7 @@
 $(function() {
 	var doc = document
 		,body = doc.body
-		,clock = $(".clock")
+		,clock = $(body)
 		,dimTime = 10 * 1000
 		,dimTimeout
 		,store = ('localStorage' in window) && window['localStorage'] !== null ? window.localStorage : null
@@ -61,7 +61,7 @@ $(function() {
 	}
 	
 	function setTheme(theme) {
-		$(body).removeClass($(".theme").map(function() { return this.name; }).toArray().join(" ")).addClass(theme);
+		clock.removeClass($(".theme").map(function() { return this.name; }).toArray().join(" ")).addClass(theme);
 		$('.controls .dot.on').removeClass('on');
 		$('.controls .dot.' + theme).addClass('on');
 		setPref("theme", theme);
@@ -80,7 +80,7 @@ $(function() {
 	setupDim();
 	setInterval(updateTime, 1000);
 
-	$(body).bind("mousemove click", brighten);
+	clock.bind("mousemove click", brighten);
 
     $('.controls .dot').click(function() { setTheme(this.name); });
     $('.controls .hours').click(function() { setHours(1*this.name); });	
