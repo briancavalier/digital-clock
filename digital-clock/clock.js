@@ -1,6 +1,7 @@
 $(function() {
 	var doc = document
 		,body = doc.body
+		,clock = $(".clock")
 		,dimTime = 10 * 1000
 		,dimTimeout
 		,store = ('localStorage' in window) && window['localStorage'] !== null ? window.localStorage : null
@@ -22,17 +23,19 @@ $(function() {
 			,h = now.getHours()
 			,m = now.getMinutes()
 			,s = now.getSeconds()
+			,nowstr = now.toString()
+			,tz = (nowstr.match(/\b([A-Z]{1,4}).$/) || [""]).pop()
 			,n = $('.digit')
 			,hours = getPref("hr", 12)
 			,ap = (h >= hours) ? "pm" : "am"
 			;
+		clock.addClass("tz-" + tz.toLowerCase());
 		// If 12hr clock, adjust h for display, and set AM/PM
 		if(hours == 12) {
 			h = (h == 0) ? 12 : (h > 12) ? h % 12 : h;
 			$('.ampm').removeClass("am pm").addClass(ap);
 		}
 
-		// Javascript Pittsburgh-ese .. n.at :)
 		// Set all the digits
 		n.eq(0).addClass("d" + fl(h / 10)).end()
 			.eq(1).addClass("d" + (h % 10)).end()
@@ -43,13 +46,13 @@ $(function() {
 	}
 			
 	function brighten() {
-		$(body).removeClass("dim");
+		clock.removeClass("dim");
 		setupDim();
 		return true;
 	}
 	
 	function dim() {
-		$(body).addClass("dim");
+		clock.addClass("dim");
 	}
 	
 	function setupDim() {
@@ -65,7 +68,7 @@ $(function() {
 	}
 	
 	function setHours(hours) {
-		$(body).removeClass("hr12 hr24").addClass('hr' + hours);
+		clock.removeClass("hr12 hr24").addClass('hr' + hours);
 		setPref("hr", hours);
 		updateTime();
 	}
@@ -77,7 +80,7 @@ $(function() {
 	setupDim();
 	setInterval(updateTime, 1000);
 
-	$(body).mousemove(brighten).click(brighten);
+	$(body).bind("mousemove click", brighten);
 
     $('.controls .dot').click(function() { setTheme(this.name); });
     $('.controls .hours').click(function() { setHours(1*this.name); });	
