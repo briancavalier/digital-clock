@@ -24,7 +24,6 @@ $(function() {
 
 	function updateTime() {
 		$('.colon .element').toggleClass('on');
-		$('.digit').removeClass("d0 d1 d2 d3 d4 d5 d6 d7 d8 d9");
 		var now = new Date()
 			,h = now.getHours()
 			,m = now.getMinutes()
@@ -43,7 +42,8 @@ $(function() {
 		}
 
 		// Set all the digits
-		n.eq(0).addClass("d" + fl(h / 10)).end()
+		n.removeClass("d0 d1 d2 d3 d4 d5 d6 d7 d8 d9")
+			.eq(0).addClass("d" + fl(h / 10)).end()
 			.eq(1).addClass("d" + (h % 10)).end()
 			.eq(2).addClass("d" + fl(m / 10)).end()
 			.eq(3).addClass("d" + (m % 10)).end()
