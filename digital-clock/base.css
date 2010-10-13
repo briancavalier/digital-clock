@@ -39,6 +39,8 @@ div {
 	padding: 20px;
 	overflow: hidden;
 	width: 800px;
+	-webkit-transform: skewX(-5deg);
+	-moz-transform: skewX(-5deg);
 	-webkit-transition: opacity 1000ms ease;
 	-moz-transition: opacity 1000ms ease;
 	z-index: 99;
@@ -54,8 +56,6 @@ div {
 	height: 222px;
 	margin: 0 15px 15px 0;
 	position: relative;
-	-webkit-transform: skewX(-5deg);
-	-moz-transform: skewX(-5deg);
 }
 .element {
 	opacity: .1;
