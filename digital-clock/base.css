@@ -46,10 +46,7 @@ div {
 .dim .display {
 	opacity: .4;
 }
-.dim .controls {
-	opacity: 0;
-}
-.dim footer {
+.dim footer, .dim .controls {
 	opacity: 0;
 }
 .display-area {
