@@ -46,6 +46,9 @@ div {
 .dim .display {
 	opacity: .4;
 }
+.dim .controls {
+	opacity: 0;
+}
 .dim footer {
 	opacity: 0;
 }

@@ -6,8 +6,8 @@
 */
 $(function() {
 	var doc = document
-		,body = doc.body
-		,clock = $(body)
+		,body = $(doc.body)
+		,clock = $('.clock')
 		,dimTime = 10 * 1000
 		,dimTimeout
 		,store = ('localStorage' in window) && window['localStorage'] !== null ? window.localStorage : null
@@ -52,13 +52,13 @@ $(function() {
 	}
 			
 	function brighten() {
-		clock.removeClass("dim");
+		body.removeClass("dim");
 		setupDim();
 		return true;
 	}
 	
 	function dim() {
-		clock.addClass("dim");
+		body.addClass("dim");
 	}
 	
 	function setupDim() {
@@ -67,7 +67,7 @@ $(function() {
 	}
 	
 	function setTheme(theme) {
-		clock.removeClass($(".theme").map(function() { return this.name; }).toArray().join(" ")).addClass(theme);
+		body.removeClass($(".theme").map(function() { return this.name; }).toArray().join(" ")).addClass(theme);
 		$('.controls .dot.on').removeClass('on');
 		$('.controls .dot.' + theme).addClass('on');
 		setPref("theme", theme);
