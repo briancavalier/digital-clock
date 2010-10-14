@@ -175,6 +175,9 @@ div {
 }
 		
 /* Colon separator */
+.sep.on .bar {
+	opacity: .9;
+}
 .colon {
 	width: 20px;
 }

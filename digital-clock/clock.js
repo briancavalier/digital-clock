@@ -23,7 +23,7 @@ $(function() {
 	}
 
 	function updateTime() {
-		$('.colon .element').toggleClass('on');
+		$('.sep').toggleClass('on');
 		var now = new Date()
 			,h = now.getHours()
 			,m = now.getMinutes()
