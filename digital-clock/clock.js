@@ -30,7 +30,7 @@ $(function() {
 			,s = now.getSeconds()
 			,nowstr = now.toString()
 			,tz = (nowstr.match(/\b([A-Z]{1,4}).$/) || [""]).pop()
-			,n = $('.digit')
+			,d = $('.digit')
 			,hours = getPref("hr", 12)
 			,ap = (h >= hours) ? "pm" : "am"
 			;
@@ -42,7 +42,7 @@ $(function() {
 		}
 
 		// Set all the digits
-		n.removeClass("d0 d1 d2 d3 d4 d5 d6 d7 d8 d9")
+		d.removeClass("d0 d1 d2 d3 d4 d5 d6 d7 d8 d9")
 			.eq(0).addClass("d" + fl(h / 10)).end()
 			.eq(1).addClass("d" + (h % 10)).end()
 			.eq(2).addClass("d" + fl(m / 10)).end()
