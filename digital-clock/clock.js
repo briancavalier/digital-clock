@@ -1,18 +1,18 @@
 /*
-	(c) copyright 2010, Brian Cavalier
+(c) copyright 2010, Brian Cavalier
 
-	LICENSE: see the LICENSE.txt file. If file is missing, this file is subject to the MIT
-	License at the following url: http://www.opensource.org/licenses/mit-license.php.
+LICENSE: see the LICENSE.txt file. If file is missing, this file is subject to the MIT
+License at the following url: http://www.opensource.org/licenses/mit-license.php.
 */
-(function($, w) {
+$(function() {
 	var doc = document
-		,body = $(doc.body)
-		,clock = $('.clock')
-		,dimTime = 10 * 1000
-		,dimTimeout
-		,store = ('localStorage' in w) && w['localStorage'] !== null ? w.localStorage : null
-		,fl = Math.floor
-		;
+	,body = $(doc.body)
+	,clock = $('.clock')
+	,dimTime = 10 * 1000
+	,dimTimeout
+	,store = ('localStorage' in window) && window['localStorage'] !== null ? window.localStorage : null
+	,fl = Math.floor
+	;
 
 	function getPref(name, defaultVal) {
 		return store ? (store.getItem(name) || defaultVal) : defaultVal;
@@ -25,15 +25,15 @@
 	function updateTime() {
 		$('.sep').toggleClass('on');
 		var now = new Date()
-			,h = now.getHours()
-			,m = now.getMinutes()
-			,s = now.getSeconds()
-			,nowstr = now.toString()
-			,tz = (nowstr.match(/\b([A-Z]{1,4}).$/) || [""]).pop()
-			,d = $('.digit')
-			,hours = getPref("hr", 12)
-			,ap = (h >= hours) ? "pm" : "am"
-			;
+		,h = now.getHours()
+		,m = now.getMinutes()
+		,s = now.getSeconds()
+		,nowstr = now.toString()
+		,tz = (nowstr.match(/\b([A-Z]{1,4}).$/) || [""]).pop()
+		,d = $('.digit')
+		,hours = getPref("hr", 12)
+		,ap = (h >= hours) ? "pm" : "am"
+		;
 		clock.addClass("tz-" + tz.toLowerCase());
 		// If 12hr clock, adjust h for display, and set AM/PM
 		if(hours == 12) {
@@ -43,12 +43,12 @@
 
 		// Set all the digits
 		d.removeClass("d0 d1 d2 d3 d4 d5 d6 d7 d8 d9")
-			.eq(0).addClass("d" + fl(h / 10)).end()
-			.eq(1).addClass("d" + (h % 10)).end()
-			.eq(2).addClass("d" + fl(m / 10)).end()
-			.eq(3).addClass("d" + (m % 10)).end()
-			.eq(4).addClass("d" + fl(s / 10)).end()
-			.eq(5).addClass("d" + (s % 10));
+		.eq(0).addClass("d" + fl(h / 10)).end()
+		.eq(1).addClass("d" + (h % 10)).end()
+		.eq(2).addClass("d" + fl(m / 10)).end()
+		.eq(3).addClass("d" + (m % 10)).end()
+		.eq(4).addClass("d" + fl(s / 10)).end()
+		.eq(5).addClass("d" + (s % 10));
 	}
 
 	function brighten() {
@@ -79,17 +79,15 @@
 		updateTime();
 	}
 
-	$(function() {
-		setTheme(getPref("theme", "green"));
-		setHours(getPref("hr", 12));
+	setTheme(getPref("theme", "green"));
+	setHours(getPref("hr", 12));
 
-		updateTime();
-		setupDim();
-		setInterval(updateTime, 1000);
+	updateTime();
+	setupDim();
+	setInterval(updateTime, 1000);
 
-		clock.bind("mousemove click", brighten);
+	clock.bind("mousemove click", brighten);
 
-	    $('.controls .dot').click(function() { setTheme(this.name); });
-	    $('.controls .hours').click(function() { setHours(1*this.name); });	
-	});	
-})(jQuery, window);
+	$('.controls .dot').click(function() { setTheme(this.name); });
+	$('.controls .hours').click(function() { setHours(1*this.name); });	
+});	
