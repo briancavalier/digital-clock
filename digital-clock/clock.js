@@ -10,7 +10,7 @@
 		,clock = $('.clock')
 		,dimTime = 10 * 1000
 		,dimTimeout
-		,store = ('localStorage' in window) && window['localStorage'] !== null ? window.localStorage : null
+		,store = ('localStorage' in w) && w['localStorage'] !== null ? w.localStorage : null
 		,fl = Math.floor
 		;
 
