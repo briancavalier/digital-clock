@@ -4,7 +4,7 @@
 	LICENSE: see the LICENSE.txt file. If file is missing, this file is subject to the MIT
 	License at the following url: http://www.opensource.org/licenses/mit-license.php.
 */
-$(function() {
+(function($, w) {
 	var doc = document
 		,body = $(doc.body)
 		,clock = $('.clock')
@@ -13,11 +13,11 @@ $(function() {
 		,store = ('localStorage' in window) && window['localStorage'] !== null ? window.localStorage : null
 		,fl = Math.floor
 		;
-		
+
 	function getPref(name, defaultVal) {
 		return store ? (store.getItem(name) || defaultVal) : defaultVal;
 	}
-	
+
 	function setPref(name, value) {
 		if(store) store.setItem(name, value);
 	}
@@ -50,44 +50,46 @@ $(function() {
 			.eq(4).addClass("d" + fl(s / 10)).end()
 			.eq(5).addClass("d" + (s % 10));
 	}
-			
+
 	function brighten() {
 		body.removeClass("dim");
 		setupDim();
 		return true;
 	}
-	
+
 	function dim() {
 		body.addClass("dim");
 	}
-	
+
 	function setupDim() {
 		clearTimeout(dimTimeout);
 		dimTimeout = setTimeout(dim, dimTime);
 	}
-	
+
 	function setTheme(theme) {
 		body.removeClass($(".theme").map(function() { return this.name; }).toArray().join(" ")).addClass(theme);
 		$('.controls .dot.on').removeClass('on');
 		$('.controls .dot.' + theme).addClass('on');
 		setPref("theme", theme);
 	}
-	
+
 	function setHours(hours) {
 		clock.removeClass("hr12 hr24").addClass('hr' + hours);
 		setPref("hr", hours);
 		updateTime();
 	}
 
-	setTheme(getPref("theme", "green"));
-	setHours(getPref("hr", 12));
-	
-	updateTime();
-	setupDim();
-	setInterval(updateTime, 1000);
+	$(function() {
+		setTheme(getPref("theme", "green"));
+		setHours(getPref("hr", 12));
 
-	clock.bind("mousemove click", brighten);
+		updateTime();
+		setupDim();
+		setInterval(updateTime, 1000);
 
-    $('.controls .dot').click(function() { setTheme(this.name); });
-    $('.controls .hours').click(function() { setHours(1*this.name); });	
-});
+		clock.bind("mousemove click", brighten);
+
+	    $('.controls .dot').click(function() { setTheme(this.name); });
+	    $('.controls .hours').click(function() { setHours(1*this.name); });	
+	});	
+})(jQuery, window);
