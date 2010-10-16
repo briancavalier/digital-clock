@@ -6,13 +6,13 @@ License at the following url: http://www.opensource.org/licenses/mit-license.php
 */
 $(function() {
 	var doc = document
-	,body = $(doc.body)
-	,clock = $('.clock')
-	,dimTime = 10 * 1000
-	,dimTimeout
-	,store = ('localStorage' in window) && window['localStorage'] !== null ? window.localStorage : null
-	,fl = Math.floor
-	;
+		,body = $(doc.body)
+		,clock = $('.clock')
+		,dimTime = 10 * 1000
+		,dimTimeout
+		,store = ('localStorage' in window) && window['localStorage'] !== null ? window.localStorage : null
+		,fl = Math.floor
+		;
 
 	function getPref(name, defaultVal) {
 		return store ? (store.getItem(name) || defaultVal) : defaultVal;
@@ -25,15 +25,15 @@ $(function() {
 	function updateTime() {
 		$('.sep').toggleClass('on');
 		var now = new Date()
-		,h = now.getHours()
-		,m = now.getMinutes()
-		,s = now.getSeconds()
-		,nowstr = now.toString()
-		,tz = (nowstr.match(/\b([A-Z]{1,4}).$/) || [""]).pop()
-		,d = $('.digit')
-		,hours = getPref("hr", 12)
-		,ap = (h >= hours) ? "pm" : "am"
-		;
+			,h = now.getHours()
+			,m = now.getMinutes()
+			,s = now.getSeconds()
+			,nowstr = now.toString()
+			,tz = (nowstr.match(/\b([A-Z]{1,4}).$/) || [""]).pop()
+			,d = $('.digit')
+			,hours = getPref("hr", 12)
+			,ap = (h >= hours) ? "pm" : "am"
+			;
 		clock.addClass("tz-" + tz.toLowerCase());
 		// If 12hr clock, adjust h for display, and set AM/PM
 		if(hours == 12) {
