@@ -20,6 +20,8 @@ div {
 	min-width: 820px;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#000), color-stop(.5, rgba(0, 100, 0, .5)), to(#000));
 	background-image: -moz-linear-gradient(top, #000, rgba(0, 100, 0, .5) 50%, #000);
+	-webkit-transition: opacity 1000ms ease;
+	-moz-transition: opacity 1000ms ease;
 }
 .overlay {
 	position: absolute;
@@ -41,12 +43,10 @@ div {
 	width: 800px;
 	-webkit-transform: skewX(-5deg);
 	-moz-transform: skewX(-5deg);
-	-webkit-transition: opacity 1000ms ease;
-	-moz-transition: opacity 1000ms ease;
 	z-index: 99;
 }
-.dim .display {
-	opacity: .4;
+.dim .clock {
+	opacity: .5;
 }
 .dim footer, .dim .controls {
 	opacity: 0;
@@ -258,7 +258,29 @@ div {
 	-moz-transition:    all 250ms ease;
 }
 
+footer {
+	display: block;
+	font-size: 9px;
+	margin-top: 10px;
+	position: relative;
+	z-index: 102;
+	-webkit-transition: all 1000ms ease;
+	-moz-transition: all 1000ms ease;
+}
+
+footer .text {
+	display: block;
+	font-size: 9px;
+	text-align: center;	
+}
+
+a, a:visited {
+	color: #0f0;
+	text-shadow: 0 0 20px #0f0;
+}
+
 /* Color Themes - Green is default */
+
 /* Blue */
 .blue .clock {
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#000), color-stop(.5, rgba(80, 160, 200, .4)), to(#000));
@@ -273,6 +295,7 @@ div {
 	color: rgb(0, 200, 255);
 	text-shadow: 0 0 20px rgb(0, 200, 255);
 }
+
 /* Red */
 .red .clock {
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#000), color-stop(.5, rgba(150, 0, 0, .3)), to(#000));
@@ -288,22 +311,85 @@ div {
 	text-shadow: 0 0 20px rgb(200, 20, 0);
 }
 
-footer {
-	display: block;
-	margin-top: 10px;
-	position: relative;
-	z-index: 102;
-	-webkit-transition: all 1000ms ease;
-	-moz-transition: all 1000ms ease;
+
+/* 
+ * Orange
+ * Uses font-based digits
+ */
+@font-face {
+	font-family: 'Bank Gothic';
+	src: local('☺'), url('fonts/bankgthd.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 
-.copyright {
-	display: block;
-	font-size: 9px;
-	text-align: center;
+.white .clock {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(80, 160, 200, .2)), to(#000));
+	background-image: -moz-linear-gradient(top, rgba(0, 200, 255, .2), #000);
+}
+.white .overlay {
+	background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 300, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, .4)));
+	background-image: -moz-radial-gradient(center 45deg, circle closest-side, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .4) 300%);
 }
 
-a, a:visited {
-	color: #0f0;
-	text-shadow: 0 0 20px #0f0;
+.white .display {
+	width: 920px;
+}
+.white .display-area {
+	margin-left: 2px;
+}
+.white .sep .element, .dot.white {
+	background-color: rgb(255, 255, 255);
+	box-shadow:         0 0 20px rgb(0, 200, 255);
+	-webkit-box-shadow: 0 0 20px rgb(0, 200, 255);
+	-moz-box-shadow:    0 0 20px rgb(0, 200, 255);
+}
+.white .digit {
+	width: 150px;
+}
+.white .digit.second {
+	width: 60px;
+}
+.white .digit .element {
+	display: none;
+}
+.white .digit:before {
+	display: block;
+	height: 100%;
+	margin: -20px 0 0 -20px;
+	font-family: "Bank Gothic", "Futura", "Arial";
+	font-size: 250px;
+	opacity: .9;
+	text-align: left;
+	color: rgb(255, 255, 255);
+	text-shadow: 0 0 30px rgb(0, 200, 255);
+}
+.white .digit.second:before {
+	font-size: 110px;
+}
+.white .d0:before {content: "0";}
+.white .hr12 .d0:first-child:before {display: none;}
+.white .d1:before {content: "1";}
+.white .d1 { width: 100px; }
+.white .second.d1 { width: 40px; }
+.white .d2:before {content: "2";}
+.white .d3:before {content: "3";}
+.white .d4:before {content: "4";}
+.white .d5:before {content: "5";}
+.white .d6:before {content: "6";}
+.white .d7:before {content: "7";}
+.white .d8:before {content: "8";}
+.white .d9:before {content: "9";}
+.white .text, .white .text a, .white .text a:visited {
+	color: rgb(255, 255, 255);
+	text-shadow: 0 0 10px rgb(255, 255, 255);
+}
+.white .ampm {
+	float: right;
+}
+.text.font-ref {
+	opacity: 0;
+}
+.white .font-ref {
+	opacity: 1;
 }
