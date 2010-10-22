@@ -317,8 +317,9 @@ a, a:visited {
  * Uses font-based digits
  */
 @font-face {
-	font-family: 'Bank Gothic';
-	src: local('☺'), url('fonts/bankgthd.ttf') format('truetype');
+	font-family: 'BankGothicMdBTMedium';
+	src: url('fonts/bankgthd-webfont.eot');
+	src: local('☺'), url('fonts/bankgthd-webfont.woff') format('woff'), url('fonts/bankgthd-webfont.ttf') format('truetype'), url('fonts/bankgthd-webfont.svg#webfontxxgoVOPr') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
