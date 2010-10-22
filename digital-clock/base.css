@@ -392,3 +392,21 @@ a, a:visited {
 .white .font-ref {
 	opacity: 1;
 }
+
+@media screen and (max-device-width: 800px) {
+	.controls {
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+	.controls .dot {
+		height: 50px;
+		width: 100px;
+		border-radius: 25px;
+		-moz-border-radius: 25px;
+		margin-left: 40px;
+	}
+	.controls .text {
+		font-size: 48px;
+		margin: 0 40px;
+	}
+}
