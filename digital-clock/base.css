@@ -312,7 +312,6 @@ a, a:visited {
 	text-shadow: 0 0 20px rgb(200, 20, 0);
 }
 
-
 /* 
  * White
  * Uses font-based digits
@@ -323,7 +322,6 @@ a, a:visited {
 	font-weight: normal;
 	font-style: normal;
 }
-
 .white .clock {
 	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(80, 160, 200, .2)), to(#000));
 	background-image: -moz-linear-gradient(top, rgba(0, 200, 255, .2), #000);
@@ -332,7 +330,6 @@ a, a:visited {
 	background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 300, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, .4)));
 	background-image: -moz-radial-gradient(center 45deg, circle closest-side, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .4) 300%);
 }
-
 .white .display {
 	width: 920px;
 }
