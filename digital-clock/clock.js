@@ -89,5 +89,5 @@ $(function() {
 	clock.bind("mousemove click", brighten);
 
 	$('.controls .dot').click(function() { setTheme(this.name); });
-	$('.controls .hours').click(function() { setHours(1*this.name); });	
+	$('.controls .hours').click(function() { setHours(this.name); });
 });	
