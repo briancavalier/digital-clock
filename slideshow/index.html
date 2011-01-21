@@ -6,6 +6,10 @@
 	<link rel="stylesheet" href="../code.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
 	<style type="text/css">
+		body {
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			font-size: 16px;
+		}
 		section, header, footer {
 			display: block;
 		}
@@ -18,7 +22,6 @@
 		}
 		p, h1 {
 			width: auto;
-			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 			line-height: 1.5em;
 		}
 
@@ -42,6 +45,20 @@
 			margin: 10px;
 			overflow: hidden;
 			opacity: 1;
+		}
+		
+		.slideshow .caption {
+			display: block;
+			position: absolute;
+			bottom: 0;
+			background: #666;
+			opacity: .5;
+			font-size: 10px;
+			font-weight: bold;
+			color: #fff;
+			width: 100%;
+			text-align: center;
+			z-index: 1;
 		}
 		
 		.slideshow img {
@@ -116,6 +133,7 @@
 			<img src="im/image03_t.jpg" width="128" height="128" alt="Image03">
 			<img src="im/image04_t.jpg" width="128" height="128" alt="Image04">
 			<img src="im/image05_t.jpg" width="128" height="128" alt="Image05">
+			<span class="caption">Instant</span>
 		</div>
 
 		<div class='slideshow slideshow-fade'>
@@ -124,6 +142,7 @@
 			<img src="im/image03_t.jpg" width="128" height="128" alt="Image03">
 			<img src="im/image04_t.jpg" width="128" height="128" alt="Image04">
 			<img src="im/image05_t.jpg" width="128" height="128" alt="Image05">
+			<span class="caption">Fade</span>
 		</div>
 
 		<div class='slideshow slideshow-slide'>
@@ -132,6 +151,7 @@
 			<img src="im/image03_t.jpg" width="128" height="128" alt="Image03">
 			<img src="im/image04_t.jpg" width="128" height="128" alt="Image04">
 			<img src="im/image05_t.jpg" width="128" height="128" alt="Image05">
+			<span class="caption">Toaster</span>
 		</div>
 
 		<div class='slideshow slideshow-scale'>
@@ -140,6 +160,7 @@
 			<img src="im/image03_t.jpg" width="128" height="128" alt="Image03">
 			<img src="im/image04_t.jpg" width="128" height="128" alt="Image04">
 			<img src="im/image05_t.jpg" width="128" height="128" alt="Image05">
+			<span class="caption">Scale</span>
 		</div>
 	</section>
 	<section>
