@@ -5,14 +5,37 @@ LICENSE: see the LICENSE.txt file. If file is missing, this file is subject to t
 License at the following url: http://www.opensource.org/licenses/mit-license.php.
 */
 $(function() {
-	var doc, body, clock, dimTime, dimTimeout, store, fl;
+	var doc, body, clock, digits, separator, ampm, themes, dimTime, dimTimeout, store, fl;
 
 	doc = document;
 	body = $(doc.body);
+
+	// Cache selectors that won't change
 	clock = $('.clock');
+	digits = $('.digit');
+	separator = $('.sep');
+	ampm = $('.ampm');
+	themes = $('.theme').map(function() { return this.name; }).toArray().join(' ');
+
 	dimTime = 10 * 1000;
 	store = ('localStorage' in window) && window['localStorage'] !== null ? window.localStorage : null;
 	fl = Math.floor;
+
+	// Set the initial theme and 12 vs. 24
+	setTheme(getPref('theme', 'green'));
+	setHours(getPref('hr', 12));
+
+	// Run the clock
+	updateTime();
+	setupDim();
+	setInterval(updateTime, 1000);
+
+	// Un-dim the clock when the user is active
+	clock.on('mousemove click', brighten);
+
+	// Set the theme and 12/24 when the user selects them
+	$('.controls .dot').click(function() { setTheme(this.name); });
+	$('.controls .hours').click(function() { setHours(this.name); });
 
 	function getPref(name, defaultVal) {
 		return store ? (store.getItem(name) || defaultVal) : defaultVal;
@@ -23,8 +46,9 @@ $(function() {
 	}
 
 	function updateTime() {
-		$('.sep').toggleClass('on');
-		var now, h, m, s, nowstr, tz, d, hours, ap;
+		var now, h, m, s, nowstr, tz, hours, ap;
+
+		separator.toggleClass('on');
 
 		now = new Date();
 		h = now.getHours();
@@ -32,7 +56,6 @@ $(function() {
 		s = now.getSeconds();
 		nowstr = now.toString();
 		tz = (nowstr.match(/\b([A-Z]{1,4}).$/) || ['']).pop();
-		d = $('.digit');
 		hours = getPref('hr', 12);
 		ap = (h >= hours) ? 'pm' : 'am';
 
@@ -41,11 +64,11 @@ $(function() {
 		// If 12hr clock, adjust h for display, and set AM/PM
 		if(hours == 12) {
 			h = (h === 0) ? 12 : (h > 12) ? h % 12 : h;
-			$('.ampm').removeClass('am pm').addClass(ap);
+			ampm.removeClass('am pm').addClass(ap);
 		}
 
 		// Set all the digits
-		d.removeClass('d0 d1 d2 d3 d4 d5 d6 d7 d8 d9')
+		digits.removeClass('d0 d1 d2 d3 d4 d5 d6 d7 d8 d9')
 		.eq(0).addClass('d' + fl(h / 10)).end()
 		.eq(1).addClass('d' + (h % 10)).end()
 		.eq(2).addClass('d' + fl(m / 10)).end()
@@ -70,7 +93,7 @@ $(function() {
 	}
 
 	function setTheme(theme) {
-		body.removeClass($('.theme').map(function() { return this.name; }).toArray().join(' ')).addClass(theme);
+		body.removeClass(themes).addClass(theme);
 		$('.controls .dot.on').removeClass('on');
 		$('.controls .dot.' + theme).addClass('on');
 		setPref('theme', theme);
@@ -81,16 +104,4 @@ $(function() {
 		setPref('hr', hours);
 		updateTime();
 	}
-
-	setTheme(getPref('theme', 'green'));
-	setHours(getPref('hr', 12));
-
-	updateTime();
-	setupDim();
-	setInterval(updateTime, 1000);
-
-	clock.bind('mousemove click', brighten);
-
-	$('.controls .dot').click(function() { setTheme(this.name); });
-	$('.controls .hours').click(function() { setHours(this.name); });
 });
